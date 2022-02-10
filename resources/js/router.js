@@ -13,6 +13,8 @@ import CheckBoxesAdvance from "./components/InputBindings/CheckBoxesAdvance.vue"
 import CheckBoxesComplex from "./components/InputBindings/CheckBoxesComplex.vue"
 import CheckBoxesSimple2 from "./components/InputBindings/CheckBoxesSimple2.vue"
 import DynamicRowRender from "./components/DynamicRowRender.vue"
+import GroupedCheckBoxes from "./components/GroupedCheckBoxes/GroupedCheckBoxes.vue"
+import TreeStructure from "./components/TreeStructure/TreeHome.vue"
 
 
 
@@ -90,6 +92,16 @@ export default new VueRouter({
             name: "DynamicRowRender",
             path: "/dynamic-row-render",
             component: DynamicRowRender
+        },
+        {
+            name: "GroupedCheckBoxes",
+            path: "/grouped-check-boxes",
+            component: GroupedCheckBoxes
+        },
+        {
+            name: "TreeStructure",
+            path: "/tree-structure",
+            component: TreeStructure
         }
     ],
 

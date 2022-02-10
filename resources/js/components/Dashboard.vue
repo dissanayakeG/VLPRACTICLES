@@ -8,6 +8,8 @@
         <router-link class="router-link" to="/list-rendering">{{ "List Rendering" }}</router-link>
         <router-link class="router-link" to="/input-binding-dashboard">{{ "Input Bindings" }}</router-link>
         <router-link class="router-link" to="/dynamic-row-render">{{ "Dynamic Row Render" }}</router-link>
+        <router-link class="router-link" to="/grouped-check-boxes">{{ "Grouped CheckBoxes" }}</router-link>
+        <router-link class="router-link" to="/tree-structure">{{ "Tree Structure" }}</router-link>
         <button @click.prevent="callJob">call job</button>
     </div>
 </template>
