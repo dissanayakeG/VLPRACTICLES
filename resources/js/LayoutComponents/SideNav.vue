@@ -59,17 +59,6 @@
         </router-link>
       </li>
       <li class="item" @click="checkCurrentRoute">
-        <router-link to="/grouped-check-boxes">
-          <ion-icon name="chevron-forward-outline"></ion-icon>
-          <span
-            :class="
-              currentRoute == 'GroupedCheckBoxes' ? 'text highlight' : 'text'
-            "
-            >Grouped CheckBoxes</span
-          >
-        </router-link>
-      </li>
-      <li class="item" @click="checkCurrentRoute">
         <router-link to="/tree-structure">
           <ion-icon name="chevron-forward-outline"></ion-icon>
           <span

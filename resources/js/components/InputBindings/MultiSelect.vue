@@ -1,5 +1,10 @@
 <template>
     <div class="content-wrapper">
+        <router-link class="router-link" to="/input-binding-dashboard">
+            {{ "Input Bindings" }}
+        </router-link>
+        <br/><br/>
+
         <multiselect
             v-model="multiValue"
             :options="source"
