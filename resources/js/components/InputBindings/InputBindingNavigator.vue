@@ -4,6 +4,9 @@
     <router-link class="router-link" to="/check-boxes-simple2">{{ "Check boxes simple2" }}</router-link>
     <router-link class="router-link" to="/check-boxes-advance">{{ "Check boxes Advance" }}</router-link>
     <router-link class="router-link" to="/check-boxes-complex">{{ "Check boxes Complex" }}</router-link>
+    <router-link class="router-link" to="/grouped-check-boxes">{{ "Grouped Check boxes" }}</router-link>
+    <router-link class="router-link" to="/list-rendering">{{ "List Rendering" }}</router-link>
+    <router-link class="router-link" to="/vue-multi-select">{{ "Vue Multi Select" }}</router-link>
   </div>
 </template>
 

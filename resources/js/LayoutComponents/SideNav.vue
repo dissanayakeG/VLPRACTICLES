@@ -17,38 +17,11 @@
         </router-link>
       </li>
       <li class="item" @click="checkCurrentRoute">
-        <router-link to="/flex-test">
+        <router-link to="/ui-navigator">
           <ion-icon name="chevron-forward-outline"></ion-icon>
           <span
-            :class="currentRoute == 'FlexTest' ? 'text highlight' : 'text'"
-            >{{ "Flex Test" }}</span
-          >
-        </router-link>
-      </li>
-      <li class="item" @click="checkCurrentRoute">
-        <router-link to="/tabs-test">
-          <ion-icon name="chevron-forward-outline"></ion-icon>
-          <span
-            :class="currentRoute == 'TabsTest' ? 'text highlight' : 'text'"
-            >{{ "Tabs Test" }}</span
-          >
-        </router-link>
-      </li>
-      <li class="item" @click="checkCurrentRoute">
-        <router-link to="/input-styling">
-          <ion-icon name="chevron-forward-outline"></ion-icon>
-          <span
-            :class="currentRoute == 'InputStyling' ? 'text highlight' : 'text'"
-            >{{ "Input Styling" }}</span
-          >
-        </router-link>
-      </li>
-      <li class="item" @click="checkCurrentRoute">
-        <router-link to="/custom-tabs">
-          <ion-icon name="chevron-forward-outline"></ion-icon>
-          <span
-            :class="currentRoute == 'CustomTabs' ? 'text highlight' : 'text'"
-            >{{ "Custome Tabs" }}</span
+            :class="currentRoute == 'UiNavigator' ? 'text highlight' : 'text'"
+            >{{ "UI" }}</span
           >
         </router-link>
       </li>
@@ -57,16 +30,7 @@
           <ion-icon name="chevron-forward-outline"></ion-icon>
           <span
             :class="currentRoute == 'PropsTests' ? 'text highlight' : 'text'"
-            >{{ "Props test" }}</span
-          >
-        </router-link>
-      </li>
-      <li class="item" @click="checkCurrentRoute">
-        <router-link to="/list-rendering">
-          <ion-icon name="chevron-forward-outline"></ion-icon>
-          <span
-            class="currentRoute=='ListRendering'? 'text highlight': 'text'"
-            >{{ "List Rendering" }}</span
+            >{{ "Props" }}</span
           >
         </router-link>
       </li>

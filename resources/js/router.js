@@ -1,20 +1,22 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Dashboard from "./components/Dashboard.vue";
-import FlexTest from "./components/FlexTest.vue";
-import TabsTest from "./components/TabsTest.vue";
-import InputStyling from "./components/InputStyling.vue";
-import CustomTabs from "./components/CustomTabs/Tabs.vue";
-import PropsTests from "./components/PropTests/Props.vue";
-import ListRendering from './components/ListRendering.vue'
+import FlexTest from "./components/UI/FlexTest.vue";
+import TabsTest from "./components/UI/TabsTest.vue";
+import InputStyling from "./components/UI/InputStyling.vue";
+import CustomTabs from "./components/UI/CustomTabs/Tabs.vue";
+import PropsTests from "./components/Props/Props.vue";
+import ListRendering from './components/InputBindings/ListRendering.vue'
 import InputBindingBashBoard from './components/InputBindings/InputBindingNavigator.vue'
 import CheckBoxesSimple from "./components/InputBindings/CheckBoxesSimple.vue"
 import CheckBoxesAdvance from "./components/InputBindings/CheckBoxesAdvance.vue"
 import CheckBoxesComplex from "./components/InputBindings/CheckBoxesComplex.vue"
 import CheckBoxesSimple2 from "./components/InputBindings/CheckBoxesSimple2.vue"
-import DynamicRowRender from "./components/DynamicRowRender.vue"
-import GroupedCheckBoxes from "./components/GroupedCheckBoxes/GroupedCheckBoxes.vue"
+import DynamicRowRender from "./components/DynamicRows/DynamicRowRender.vue"
+import GroupedCheckBoxes from "./components/InputBindings/GroupedCheckBoxes.vue"
 import TreeStructure from "./components/TreeStructure/TreeHome.vue"
+import UiNavigator from "./components/UI/UiNavigator";
+import MultiSelect from "./components/InputBindings/MultiSelect";
 
 
 
@@ -61,7 +63,7 @@ export default new VueRouter({
             name: "ListRendering",
             path: "/list-rendering",
             component: ListRendering
-        },          
+        },
 
         {
             name: "InputBindingBashBoard",
@@ -102,8 +104,18 @@ export default new VueRouter({
             name: "TreeStructure",
             path: "/tree-structure",
             component: TreeStructure
+        },
+        {
+            name: "UiNavigator",
+            path: "/ui-navigator",
+            component: UiNavigator
+        },
+        {
+            name: "MultiSelect",
+            path: "/vue-multi-select",
+            component: MultiSelect
         }
     ],
 
-    mode: "history"  
+    mode: "history"
 });
