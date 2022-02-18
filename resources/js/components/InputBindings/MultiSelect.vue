@@ -10,7 +10,10 @@
             :options="source"
             :multiple="true"
             :close-on-select="true"
-            placeholder="Pick some"
+            group-values="libs"
+            group-label="language"
+            :group-select="true"
+            placeholder="Select Site(s)"
             label="name"
             track-by="name">
         </multiselect>
@@ -27,15 +30,18 @@
         components: {Multiselect},
         data() {
             return {
-                selected: null,
-                multiValue: '',
+                multiValue: [],
                 source: [
-                    {id: 1, name: 'yo1'},
-                    {id: 2, name: 'yo2'},
-                    {id: 3, name: 'yo3'},
-                    {id: 4, name: 'yo4'},
-                    {id: 5, name: 'yo5'},
-                    {id: 5, name: 'mad'}
+                    {
+                        language: 'Select All',
+                        libs: [
+                            {name: 'Vue.js', category: 'Front-end'},
+                            {name: 'React', category: 'Front-end'},
+                            {name: 'Angular', category: 'Backend'},
+                            {name: 'Laravel', category: 'Backend'},
+                            {name: 'Node', category: 'Backend'}
+                        ]
+                    }
                 ]
             }
         }
