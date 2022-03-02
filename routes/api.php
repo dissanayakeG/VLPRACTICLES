@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/test-jobs', 'QueueJobsController@index');
+Route::get('/get-tree-structure-data', 'TreeDataController@index');

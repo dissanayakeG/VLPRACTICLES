@@ -1,23 +1,30 @@
 <template>
-    <div class="content-wrapper">
-        <TreeNode v-for="node in nodes" :key="node.id" :node="node"/>
-        <TreeNodeGrouped v-for="(node, index) in node2[0]" :key="index" :node="node"/>
+    <div class="content-wrapper" style="overflow: scroll; padding: 100px">
+        <div class="tree-data">
+            <TreeNode2 v-for="(node, index) in groupedData" :key="index" :node="node"
+                       @emit="getSelectedFunctionIds"/>
+            <!--        <TreeNode v-for="node in nodes" :key="node.id" :node="node"/>-->
+            <!--        <TreeNodeGrouped v-for="(node, index) in groupedData[0]" :key="index" :node="node"/>-->
+        </div>
     </div>
 </template>
 
 <script>
     import TreeNode from './_treeNode.vue'
     import TreeNodeGrouped from './_treeNodeGrouped.vue'
+    import TreeNode2 from './_adminFunctionCheckbox.vue';
+
 
     export default {
         name: 'TreeHome',
         components: {
             TreeNode,
-            TreeNodeGrouped
+            TreeNodeGrouped,
+            TreeNode2
         },
-        data(){
-            return{
-                node2:[
+        data() {
+            return {
+                node2: [
                     {
                         "Account Manager": [
                             {
@@ -140,7 +147,14 @@
                             }
                         ]
                     }
-                ]
+                ],
+
+                groupedData: [],
+
+                allViewCheckBoxes: [],
+                allManageCheckBoxes: [],
+                isCheckAllView: false,
+                isCheckAllManage: false,
             }
         },
         computed: {
@@ -157,14 +171,14 @@
                                     {
                                         id: 3,
                                         label: 'Banana',
-                                        permissions:[
+                                        permissions: [
                                             {
-                                                id:1,
-                                                permission:'view'
+                                                id: 1,
+                                                permission: 'view'
                                             },
                                             {
-                                                id:1,
-                                                permission:'updt'
+                                                id: 1,
+                                                permission: 'updt'
                                             }
                                         ]
                                     },
@@ -229,8 +243,158 @@
                     }
                 ]
             }
+        },
+
+        mounted() {
+            let self = this;
+            this.getTreeStructureData();
+            this.handleCheckAll();
+            this.manageMainCheckBoxesOnInitialLoad();
+
+            //
+            self.function_ids = [];
+            $.each($(".tree-data input[type='checkbox']:checked"), function () {
+                self.function_ids.push($(this).val());
+            });
+        },
+
+        methods: {
+            getTreeStructureData() {
+                axios.get('api/get-tree-structure-data').then(response => {
+                    this.groupedData = response.data.data;
+                    console.log('hhhhh', this.groupedData);
+
+                });
+            },
+
+            handleCheckAll() {
+                let self = this;
+                $('.AllCheck input:checkbox').click(function (event) {
+                    if ($(this).attr('function_type') == 'view') {
+                        let viewCheckBoxes = $("input[func_type='view']");
+                        self.handleCheckAllUnderMainCheckBox(viewCheckBoxes);
+                    } else if ($(this).attr('function_type') == 'manage') {
+                        let allCheckBoxes = $("input[type='checkbox']");
+                        self.handleCheckAllUnderMainCheckBox(allCheckBoxes);
+                    }
+                });
+            },
+
+            handleCheckAllUnderMainCheckBox(allCheckBoxes) {
+                let self = this;
+                Object.entries(allCheckBoxes).map(([key, value]) => {
+                    if (event.target.checked == true && typeof value != 'number') {
+                        value.checked = true;
+
+                    } else if (event.target.checked == false && typeof value != 'number') {
+                        value.checked = false;
+                    }
+                })
+                self.setColorsToCheckBoxes();
+            },
+
+            getSelectedFunctionIds() {
+                let self = this;
+                let checkedViewCheckBoxes = [];
+                let checkedManageCheckBoxes = [];
+                $('.tree-data input:checkbox:checked').each(function (key, val) {
+                    let function_type = $(val).attr('func_type');
+                    if (function_type == 'view') {
+                        checkedViewCheckBoxes.push($(val).attr('id'))
+                    } else if (function_type == 'manage') {
+                        checkedManageCheckBoxes.push($(val).attr('id'))
+                    }
+                });
+                self.checkIsAllChecked(checkedViewCheckBoxes, checkedManageCheckBoxes);
+                self.setColorsToCheckBoxes();
+            },
+
+            manageMainCheckBoxesOnInitialLoad() {
+                let self = this;
+                let checkedViewCheckBoxes = [];
+                let checkedManageCheckBoxes = [];
+                let selectedScopeElement = document.getElementsByClassName('tree-data')[0].querySelectorAll('input[type="checkbox"]');
+                selectedScopeElement.forEach((val, key) => {
+                    let function_type = $(val).attr('func_type');
+                    let is_active = $(val).attr('is_active');
+                    if (function_type == 'view') {
+                        if (is_active == 'yes') {
+                            checkedViewCheckBoxes.push($(val).attr('id'))
+                        }
+                        self.allViewCheckBoxes.push($(val).attr('id'))
+                    } else if (function_type == 'manage') {
+                        if (is_active == 'yes') {
+                            checkedManageCheckBoxes.push($(val).attr('id'))
+                        }
+                        self.allManageCheckBoxes.push($(val).attr('id'))
+                    }
+                })
+                self.checkIsAllChecked(checkedViewCheckBoxes, checkedManageCheckBoxes);
+                self.setColorsToCheckBoxes();
+            },
+
+            checkIsAllChecked(checkedViewCheckBoxes, checkedManageCheckBoxes) {
+                let self = this;
+                // console.log('viewDiff',self.allViewCheckBoxes.length - checkedViewCheckBoxes.length);
+                // console.log('manageDiff',self.allManageCheckBoxes.length - checkedManageCheckBoxes.length);
+                if (self.allViewCheckBoxes.length - checkedViewCheckBoxes.length == 0) {
+                    self.isCheckAllView = true
+                } else {
+                    self.isCheckAllView = false
+                }
+                if (self.allManageCheckBoxes.length - checkedManageCheckBoxes.length == 0) {
+                    self.isCheckAllManage = true
+                } else {
+                    self.isCheckAllManage = false
+                }
+            },
+
+            setColorsToCheckBoxes() {
+                let allCheckedCheckBoxes = [];
+                let allUnCheckedCheckBoxes = [];
+                $('.tree-data input:checked').each(function (index, item) {
+                    allCheckedCheckBoxes.push(item);
+                });
+
+                $('.tree-data input:not(:checked)').each(function (index, item) {
+                    allUnCheckedCheckBoxes.push(item);
+                });
+
+                allCheckedCheckBoxes.forEach((val, key) => {
+                    //check parent div has span with fas class
+                    let closestWrapperDiv = $(val).closest('div.append-class-by-type')[0].querySelectorAll('b-icon[class^="fas"]');
+                    //if has add blue class to all labels
+                    //if not add green class to all labels
+                    if (closestWrapperDiv.length > 0) {
+                        $(val).parent('label').addClass('m-checkbox m-checkbox--solid m-checkbox--state-brand');
+                    } else {
+                        $(val).parent('label').addClass('m-checkbox m-checkbox--solid m-checkbox--state-success');
+                    }
+                });
+
+                //remove colors from unchecked checkboxes
+                allUnCheckedCheckBoxes.forEach((val, key) => {
+                    $(val).parent('label').addClass('m-checkbox m-checkbox--solid');
+                    $(val).parent('label').removeClass('m-checkbox--state-brand');
+                    $(val).parent('label').removeClass('m-checkbox--state-success');
+                });
+            },
         }
     }
 
 </script>
+
+<style scoped>
+    .m-checkbox--state-brand{
+        background-color: #3f9ae5 !important;
+    }
+
+    .m-checkbox--state-success{
+        color: #5cde0c !important;
+    }
+
+    .m-checkbox .m-checkbox--solid{
+        color: #fffffe !important;
+    }
+</style>
 
