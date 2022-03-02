@@ -15,7 +15,9 @@
             :group-select="true"
             placeholder="Select Site(s)"
             label="name"
-            track-by="name">
+            track-by="name"
+            ref="mySelect"
+            @select="selected">>
         </multiselect>
         <pre>{{multiValue}}</pre>
     </div>
@@ -28,6 +30,7 @@
         name: "MultiSelect",
 
         components: {Multiselect},
+
         data() {
             return {
                 multiValue: [],
@@ -44,6 +47,13 @@
                     }
                 ]
             }
+        },
+
+        methods: {
+            selected(selectedOption, id) {
+                console.log(selectedOption, id);
+                this.$refs.mySelect.deactivate();
+            },
         }
     };
 </script>

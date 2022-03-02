@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="content-wrapper">
     <router-link class="router-link" to="/input-binding-dashboard">
       {{ "Input Bindings" }}
     </router-link>

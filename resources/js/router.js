@@ -10,8 +10,6 @@ import ListRendering from './components/InputBindings/ListRendering.vue'
 import InputBindingBashBoard from './components/InputBindings/InputBindingNavigator.vue'
 import CheckBoxesSimple from "./components/InputBindings/CheckBoxesSimple.vue"
 import CheckBoxesAdvance from "./components/InputBindings/CheckBoxesAdvance.vue"
-import CheckBoxesComplex from "./components/InputBindings/CheckBoxesComplex.vue"
-import CheckBoxesSimple2 from "./components/InputBindings/CheckBoxesSimple2.vue"
 import DynamicRowRender from "./components/DynamicRows/DynamicRowRender.vue"
 import GroupedCheckBoxes from "./components/InputBindings/GroupedCheckBoxes.vue"
 import TreeStructure from "./components/TreeStructure/TreeHome.vue"
@@ -79,16 +77,6 @@ export default new VueRouter({
             name: "CheckBoxesAdvance",
             path: "/check-boxes-advance",
             component: CheckBoxesAdvance
-        },
-        {
-            name: "CheckBoxesComplex",
-            path: "/check-boxes-complex",
-            component: CheckBoxesComplex
-        },
-        {
-            name: "CheckBoxesSimple2",
-            path: "/check-boxes-simple2",
-            component: CheckBoxesSimple2
         },
         {
             name: "DynamicRowRender",
