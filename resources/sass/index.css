@@ -100,7 +100,7 @@
 .content-wrapper {
     margin: 20px;
     border-radius: 15px;
-    padding: 10px;
     background-color: rgb(255, 255, 255);
     padding: 20px;
+    overflow: scroll;
   }

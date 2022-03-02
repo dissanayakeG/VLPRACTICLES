@@ -1,5 +1,5 @@
 <template>
-    <div class="content-wrapper" style="overflow: scroll; padding: 100px">
+    <div class="content-wrapper" style="padding: 100px">
         <div class="tree-data">
             <TreeNode2 v-for="(node, index) in groupedData" :key="index" :node="node"
                        @emit="getSelectedFunctionIds"/>
@@ -13,7 +13,6 @@
     import TreeNode from './_treeNode.vue'
     import TreeNodeGrouped from './_treeNodeGrouped.vue'
     import TreeNode2 from './_adminFunctionCheckbox.vue';
-
 
     export default {
         name: 'TreeHome',
