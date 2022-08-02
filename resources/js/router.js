@@ -15,6 +15,7 @@ import GroupedCheckBoxes from "./components/InputBindings/GroupedCheckBoxes.vue"
 import TreeStructure from "./components/TreeStructure/TreeHome.vue"
 import UiNavigator from "./components/UI/UiNavigator";
 import MultiSelect from "./components/InputBindings/MultiSelect";
+import SearchSelect from "./components/InputBindings/SearchSelect";
 
 
 
@@ -102,6 +103,11 @@ export default new VueRouter({
             name: "MultiSelect",
             path: "/vue-multi-select",
             component: MultiSelect
+        },
+        {
+            name: "SearchSelect",
+            path: "/search-select",
+            component: SearchSelect
         }
     ],
 
