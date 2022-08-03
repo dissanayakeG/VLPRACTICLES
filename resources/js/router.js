@@ -16,6 +16,8 @@ import TreeStructure from "./components/TreeStructure/TreeHome.vue"
 import UiNavigator from "./components/UI/UiNavigator";
 import MultiSelect from "./components/InputBindings/MultiSelect";
 import SearchSelect from "./components/InputBindings/SearchSelect";
+import EmailTemplates from "./components/Others/EmailTemplates";
+
 
 
 
@@ -108,6 +110,11 @@ export default new VueRouter({
             name: "SearchSelect",
             path: "/search-select",
             component: SearchSelect
+        },
+        {
+            name: "EmailTemplates",
+            path: "/email-templates",
+            component: EmailTemplates
         }
     ],
 

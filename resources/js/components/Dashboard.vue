@@ -6,6 +6,7 @@
         <router-link class="router-link" to="/input-binding-dashboard">{{ "Input Bindings" }}</router-link>
         <router-link class="router-link" to="/dynamic-row-render">{{ "Dynamic Row Render" }}</router-link>
         <router-link class="router-link" to="/tree-structure">{{ "Tree Structure" }}</router-link>
+        <router-link class="router-link" to="/email-templates">{{ "Email Templates" }}</router-link>
         <button @click.prevent="callJob">call job</button>
     </div>
 </template>

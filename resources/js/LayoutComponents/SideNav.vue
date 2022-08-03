@@ -67,6 +67,15 @@
           >
         </router-link>
       </li>
+      <li class="item" @click="checkCurrentRoute">
+        <router-link to="/email-templates">
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+          <span
+            :class="currentRoute == 'EmailTemplates' ? 'text highlight' : 'text'"
+            >Email Templates</span
+          >
+        </router-link>
+      </li>
     </ul>
   </div>
 </template>
